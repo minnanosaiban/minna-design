@@ -8,13 +8,14 @@ tomo・hotline・決算/株価データ検証の3サイト共通のデザイン�
 - `css/components.css` — 部品（目次カード・フッターカード・著作権表記・シェアボタン）
 - `css/parts.css` — tomo・hotline 共通のページ部品（タブのドロップダウン、タイトル帯、中央寄せカラム、制作物一覧など）
 - `DESIGN_SYSTEM.md` — 原則とルール
-- `sync.bat` — 各サイトの `docs/css/shared/` へコピー
+- `sync.bat` — 各サイトの `docs/css/shared/` へ、そのサイトが使うファイルだけコピー（`shared/` は毎回作り直す）
+- `sites.txt` — サイトごとに配るファイルの対応表
 
 ```
 sync.bat C:\minnanosaiban\tomo
 ```
 
-サイト側の `mkdocs.yml` では、サイト固有のCSSより先に、次の順で読み込む。
+配るファイルは `sites.txt` で決まる。サイトを増やす・読み込むファイルを変えるときは、`sites.txt` の行を直す（形式：`フォルダ名=tokens base layout ...`）。サイト側の `mkdocs.yml` では、サイト固有のCSSより先に、次の順で読み込む。
 
 | サイト | 読み込む共通CSS（この順） |
 |---|---|

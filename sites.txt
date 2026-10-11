@@ -1,0 +1,6 @@
+# site folder name = css files to copy into docs/css/shared/ (without .css). Lines starting with # are comments.
+# The site's mkdocs.yml must load them in this order: tokens, base, layout, components, parts (then the site's own CSS).
+tomo=tokens base layout components parts
+hotline=tokens base layout components parts
+kessan-kabuka=tokens base layout components
+e-shikaku=tokens
