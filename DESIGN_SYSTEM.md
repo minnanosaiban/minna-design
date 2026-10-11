@@ -66,4 +66,4 @@ e-shikaku（動く数式ノート）も同じ配色方針に合わせる。
 
 ## ビルドツールについて
 
-hotline は Zensical（`theme: material` ＋ `variant: classic`）。tomo も Zensical へ移行予定。Zensical は MkDocs の `hooks:` とプラグインを使えないため、共通CSSはクラスと変数だけで完結させ、ページごとのクラス付与などに頼らない。
+hotline は Zensical（`theme: material` ＋ `variant: classic`）。tomo と決算・株価データ検証も Zensical にする方針（決算・株価データ検証は新規作成時から Zensical で始める）。Zensical は MkDocs の `hooks:` とプラグインを使えないため、共通CSSはクラスと変数だけで完結させ、ページごとのクラス付与などに頼らない。
