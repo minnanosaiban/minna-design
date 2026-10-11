@@ -3,4 +3,4 @@
 tomo=tokens base layout components parts
 hotline=tokens base layout components parts
 kessan-kabuka=tokens base layout components
-e-shikaku=tokens
+e-shikaku=tokens base layout
