@@ -22,6 +22,8 @@ e-shikaku（動く数式ノート）も同じ配色方針に合わせる。
 | 面 `--surface-gray` | `#eef1f5` | `#16263c` |
 | ヘッダー `--md-primary-fg-color` | `#e5e7ea` | `#0d1b2a` |
 | 補足の文字 `--muted` | `#5f6b76` | `#9aa4ae` |
+| 面 `--surface`（図・カード） | `#ffffff` | `hsla(225,15%,15%,1)` |
+| 細い線 `--line` / 濃い線 `--line-strong` | `#d5d9de` / `#aab0b8` | 白16% / 白32% |
 | 無彩色の線 `--md-card-border` / `-soft` | `#aab0b8` / 黒16% | 白22% / 白20% |
 | 警告赤 `--md-warn-red` | `#C70025` | `#f2545b` |
 
@@ -54,7 +56,7 @@ e-shikaku（動く数式ノート）も同じ配色方針に合わせる。
 - tomo：`.about-work*`（制作物一覧）、`.toc-card`（カード）、`.hero-band`、`.x-share`、図のCSS。
 - 決算・株価データ検証：記事用スタイル（`10-blog-reset.css`）。
 - hotline：ＥＮＥＯＳの橙、裁判文書の型（`.doc`／`.idt`／`.hg-idt*`）、対照カード、アコーディオン、カルーセル。
-- e-shikaku：動く図のウィジェット。変数名は `--main`／`--line`／`--muted` など独自名。共通名への寄せは今後の課題。
+- e-shikaku：動く図のウィジェット（`note.css`）。凝縮ノートで文字サイズが小さいため、`tokens.css` だけを取り込み、`base.css` は使わない。色は共通トークンを参照し、`--main` は `--md-main-color` の別名にしている。
 
 サイト固有のCSSでも、色は共通トークンだけを参照する（色コードの直書きをしない）。
 
