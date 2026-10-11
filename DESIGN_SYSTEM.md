@@ -47,14 +47,22 @@ e-shikaku（動く数式ノート）も同じ配色方針に合わせる。
 - h1 2.4rem（モバイル1.7rem）、h2 1.6rem（モバイル1.2rem）、いずれも細字300。h3/h4 は18px。
 - 本文幅は `.width-40`（32rem＝約40字）。自己センタリングを持つ。幅の広い要素を足すときは、既存の `width-40` 系が崩れないか確認する。
 
-## 共通部品（`css/base.css`）
+## 共通CSSの構成
 
-`.margin01/02/04`、`.gap-6`、`.larger`、`.smaller`、`.smallest`、`.text-warn`、`.text-main`、`.bar-title`、`.center`、`.width-40`、`.arrow-link`、ヘッダーのサイト名固定、タブ／ナビの紺の下線・強調、フッター余白。
+| ファイル | 内容 | 読み込むサイト |
+|---|---|---|
+| `tokens.css` | 色・余白・文字サイズ・面と線の値 | 4サイトすべて |
+| `base.css` | 見出し、余白ユーティリティ（`.margin01/02/04`・`.gap-6`）、`.bar-title`、`.text-warn/main`、`.width-40`、`.arrow-link`、ヘッダーのサイト名固定、タブ・ナビの紺の下線、フッター余白 | tomo・hotline・kessan-kabuka |
+| `layout.css` | 本文カラム余白、サイドバー、フッター注記（`.md-footer-note`） | 同上 |
+| `components.css` | 目次カード（`.toc-card`）、フッターカード・著作権表記、シェアボタン（`.x-share`） | 同上 |
+| `parts.css` | タブのドロップダウン、中央寄せカラム（`.center-container`）、タイトル帯（`.hero-band`）、制作物一覧（`.about-work`）、カードなど | tomo・hotline |
+
+置き場の判断：3サイトで使う → `layout`／`components`、2サイト（tomo・hotline）で使う → `parts`、1サイトだけ → そのサイトのCSS。**両方のサイトで使っているルールだけ**を共通にする（片方で死んでいるルールを共通に入れない）。1つのルールに共通のセレクタとサイト専用のセレクタが混ざっているときは、共通にしない。
 
 ## サイト固有（各リポジトリに置く）
 
-- tomo：`.about-work*`（制作物一覧）、`.toc-card`（カード）、`.hero-band`、`.x-share`、図のCSS。
-- 決算・株価データ検証：記事用スタイル（`10-blog-reset.css`）。
+- tomo：固有のCSSなし（共通 `parts.css` までで足りる）。
+- 決算・株価データ検証：記事用スタイル（`blog.css`）。
 - hotline：ＥＮＥＯＳの橙、裁判文書の型（`.doc`／`.idt`／`.hg-idt*`）、対照カード、アコーディオン、カルーセル。
 - e-shikaku：動く図のウィジェット（`note.css`）。凝縮ノートで文字サイズが小さいため、`tokens.css` だけを取り込み、`base.css` は使わない。色は共通トークンを参照し、`--main` は `--md-main-color` の別名にしている。
 
@@ -74,5 +82,5 @@ hotline は Zensical（`theme: material` ＋ `variant: classic`）。tomo と決
 
 - 共通CSS（`shared/`）はサイト固有CSSより**先に**読み込まれる。同じ詳細度で両方が `!important` のとき、勝つのは後ろ（サイト固有）。共通クラスと同じ要素に付くサイト固有のルールは、共通クラスが持つプロパティを触らない。
   - 例：`.width-40`（左右 `margin:auto`）が付く要素に、サイト側で `margin` のショートハンドを書かない。上下だけ指定する（hotline の `.trial-year-nav` で実際に退行した）。
-- 共通と同じセレクタをサイト側に書き直さない。共通側の値を変えたいときは minna-design を直す。サイトだけ違う値にしたいときは、理由をコメントに書いた上書きだけを置く。
-- 重複の検出：サイト側の `docs/css/*.css` に、`base.css` と同じセレクタがないか確認する（2026-10-11 時点では tomo・hotline・kessan-kabuka とも重複なし）。
+- 共通と同じセレクタをサイト側に書き直さない。共通ファイルの間にも読み込み順がある（tokens → base → layout → components → parts → サイト固有）。同じ要素に効く基本ルールと `@media` の上書きは、必ず同じファイルに置く（別々にすると、読み込み順が変わって上書きが効かなくなる。hotline の `.agm-section` で実際に退行した）。共通側の値を変えたいときは minna-design を直す。サイトだけ違う値にしたいときは、理由をコメントに書いた上書きだけを置く。
+- 重複の検出：サイト側の `docs/css/*.css` に、`base.css` と同じセレクタがないか確認する（2026-10-11 時点では tomo・hotline・kessan-kabuka とも、共通と同一のルールはサイト側にない）。
